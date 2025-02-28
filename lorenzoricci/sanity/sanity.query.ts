@@ -20,3 +20,20 @@ export async function getProfile() {
     }`
   );
 }
+
+// sanity/sanity.query.ts
+
+export async function getJob() {
+  return client.fetch(
+    groq`*[_type == "education"]{
+      _id,
+      name,
+      jobTitle,
+      "logo": logo.asset->url,
+      url,
+      description,
+      startDate,
+      endDate,
+    }`
+  );
+}
