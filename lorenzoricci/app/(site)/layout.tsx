@@ -1,28 +1,33 @@
-// app/layout.tsx
-
-import "../../app/globals.css";
-import type { Metadata } from "next";
+import "../(site)/styles/globals.css";
+import Script from "next/script";
 import { Inter } from "next/font/google";
+import { incognito } from "./assets/fonts/font";
+import { gitlabmono } from "./assets/fonts/font";
 import Navbar from "./components/global/Navbar";
 import Footer from "./components/global/Footer";
+import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--inter",
+});
 
-export const metadata: Metadata = {
-  title: "Sanity Next.js Portfolio Site",
-  description: "A personal portfolio site built with Sanity and Next.js",
-  openGraph: {
-    images: "add-your-open-graph-image-url-here",
-  },
-};
-
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-zinc-900 text-white`}>
-        <Navbar />
-        {children}
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${incognito.variable} ${inter.className} ${gitlabmono.variable} dark:bg-zinc-900 bg-white dark:text-white text-zinc-700`}
+      >
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

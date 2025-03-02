@@ -29,7 +29,9 @@ export default async function Home() {
               </Slide>
             </div>
           ))}
+        <Slide>
         <HeroSvg />
+        </Slide>
       </section>
       <Education />
     </main>
